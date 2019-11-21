@@ -7,7 +7,7 @@ def build_markov_chain(data, n):
         '_names': set(data)
     }
     for word in data:
-        word_wrapped = str(word) + '.'
+        word_wrapped = str(word) + '*'
         for i in range(0, len(word_wrapped) - n):
             tuple = word_wrapped[i:i + n]
             next = word_wrapped[i + 1:i + n + 1]
@@ -43,7 +43,7 @@ def generate(chain):
     while True:
         tuple = select_random_item(chain[tuple])
         last_character = tuple[-1]
-        if last_character == '.':
+        if last_character == '*':
             break
         result.append(last_character)
     
@@ -53,7 +53,20 @@ def generate(chain):
     else:
         return generate(chain)
 
+pkmn = pd.read_csv("Raw_Data.csv")
+pharma = pd.read_json("pharma.txt")
+philo = pd.read_csv("philo.csv")
 
-data_frame = pd.read_csv("Raw_Data.csv")
+db = []
+for entry in pharma['brand_name']:
+    if entry.isalpha():
+        db.append(entry)
+db = list(dict.fromkeys(db))
 
-print(generate(build_markov_chain(data_frame['name'].tolist(),3)))
+newdb = []
+for item in db:
+    newdb.append( str(item[0]).upper() + str(item[1:]).lower() )
+
+newdb =  pkmn['name'].tolist() + philo['Name'].tolist()
+for i in range(0,15):
+    print(generate(build_markov_chain(newdb,3)))
