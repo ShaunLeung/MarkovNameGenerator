@@ -1,5 +1,7 @@
 import random
 
+# Creates a Dictionary of all inputed names, frames, weighted next links, and 
+# initial starting points for the chain
 def build_markov_chain(data, n):
     chain = {
         '_initial':{},
@@ -37,7 +39,7 @@ def build_markov_chain(data, n):
 
     return chain 
 
-#Okay this part is a little weird.
+#Okay, this part is a little weird.
 #It works by getting a sum of all the weighting and then multiplying it by a 
 #random number between 0-1 so our next random frame will be one in the next list
 #from there it goes item by item subtracting the next link weighting from the 
@@ -74,5 +76,5 @@ def generate(chain):
     if generated not in chain['_names']:
         return generated
     else:
-        return generate(chain)
+        return generate(chain) #recursively get a new name
 
