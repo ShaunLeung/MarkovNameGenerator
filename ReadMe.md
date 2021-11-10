@@ -1,2 +1,2 @@
-1# Markov Name Generator
+# Markov Name Generator
 
