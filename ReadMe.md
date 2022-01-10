@@ -4,6 +4,10 @@
 Using a Markov-Chain model constructed from three databases, pharma.csv, philo.csv and, pkmn.csv the program will generate a random name with influences from the previously
 mentioned databases. 
 
+The idea for this name generator arose from a simple game that host/streamer [Sean 'Day[9]' Plott](https://www.twitch.tv/day9tv) would play when they would see interesting online
+handles while playing multiplayer games. The game was simply called "Pokemon, Philosopher, or Pharamceutical" and it was just to decided which of the three categories the name
+fell under. 
+
 ## Markov Chain Model
 The Markov Chain Model consists of three parts, starting entries, intermidiate entries and ending entries and can be adjusted to look at sub-strings of size k for each entry. The
 model will process each word in the databases recording which k letters is starts with adding it to the starting list or incrementing the wieght if it has already recorded that
